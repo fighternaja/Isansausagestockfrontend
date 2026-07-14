@@ -2,26 +2,99 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /*
+      Palette inspired by real Isaan sausage-making moments:
+      - charcoal grill: deep smoke from the stove
+      - sesame oil glow: warm golden rice
+      - banana leaf green: fresh wrapping leaf
+      - chili smoke: caution / low stock
+      - market earth: workshop floor and wooden tables
+    */
+    --background: 42 38% 96%;
+    --foreground: 18 28% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 18 28% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 18 28% 18%;
+    --primary: 18 28% 18%;
+    --primary-foreground: 42 38% 96%;
+    --secondary: 42 72% 80%;
+    --secondary-foreground: 18 28% 18%;
+    --muted: 42 42% 90%;
+    --muted-foreground: 22 18% 37%;
+    --accent: 16 54% 40%;
+    --accent-foreground: 42 38% 96%;
+    --destructive: 8 58% 40%;
+    --destructive-foreground: 42 38% 96%;
+    --success: 95 26% 35%;
+    --success-foreground: 42 38% 96%;
+    --border: 37 35% 84%;
+    --input: 37 35% 84%;
+    --ring: 16 54% 40%;
+    --radius: 0.65rem;
+  }
+
+  .dark {
+    --background: 18 28% 14%;
+    --foreground: 42 38% 96%;
+    --card: 18 26% 18%;
+    --card-foreground: 42 38% 96%;
+    --popover: 18 26% 18%;
+    --popover-foreground: 42 38% 96%;
+    --primary: 42 72% 80%;
+    --primary-foreground: 18 28% 14%;
+    --secondary: 24 25% 25%;
+    --secondary-foreground: 42 38% 96%;
+    --muted: 24 25% 25%;
+    --muted-foreground: 42 35% 87%;
+    --accent: 16 54% 40%;
+    --accent-foreground: 42 38% 96%;
+    --destructive: 8 58% 40%;
+    --destructive-foreground: 42 38% 96%;
+    --success: 95 26% 35%;
+    --success-foreground: 42 38% 96%;
+    --border: 24 25% 29%;
+    --input: 24 25% 29%;
+    --ring: 16 54% 40%;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-accent/25;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-prompt), sans-serif;
+    @apply tracking-tight;
+  }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .pha-khao-ma-pattern {
+    background-color: hsl(var(--background));
+    background-image:
+      linear-gradient(135deg, hsla(var(--accent) / 0.06) 0%, transparent 60%),
+      linear-gradient(45deg, hsla(var(--primary) / 0.03) 25%, transparent 25%, transparent 75%, hsla(var(--primary) / 0.03) 75%, hsla(var(--primary) / 0.03));
+    background-size: 100% 100%, 40px 40px;
+    background-position: 0 0, 0 0;
+  }
+
+  .isaan-surface {
+    @apply rounded-[1.5rem] border border-border/70 bg-card/80 shadow-[0_20px_60px_-35px_hsla(var(--primary)/0.35)] backdrop-blur;
+  }
+
+  .isaan-panel {
+    @apply rounded-[1.25rem] border border-border/60 bg-background/70 p-4 shadow-sm;
+  }
+
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
   }
 }

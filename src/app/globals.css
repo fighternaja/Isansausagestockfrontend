@@ -4,60 +4,74 @@
 
 @layer base {
   :root {
-    /*
-      Palette inspired by real Isaan sausage-making moments:
-      - charcoal grill: deep smoke from the stove
-      - sesame oil glow: warm golden rice
-      - banana leaf green: fresh wrapping leaf
-      - chili smoke: caution / low stock
-      - market earth: workshop floor and wooden tables
-    */
-    --background: 42 38% 96%;
-    --foreground: 18 28% 18%;
+    --background: 210 40% 98%;
+    --foreground: 222.2 84% 4.9%;
+
     --card: 0 0% 100%;
-    --card-foreground: 18 28% 18%;
+    --card-foreground: 222.2 84% 4.9%;
+
     --popover: 0 0% 100%;
-    --popover-foreground: 18 28% 18%;
-    --primary: 18 28% 18%;
-    --primary-foreground: 42 38% 96%;
-    --secondary: 42 72% 80%;
-    --secondary-foreground: 18 28% 18%;
-    --muted: 42 42% 90%;
-    --muted-foreground: 22 18% 37%;
-    --accent: 16 54% 40%;
-    --accent-foreground: 42 38% 96%;
-    --destructive: 8 58% 40%;
-    --destructive-foreground: 42 38% 96%;
-    --success: 95 26% 35%;
-    --success-foreground: 42 38% 96%;
-    --border: 37 35% 84%;
-    --input: 37 35% 84%;
-    --ring: 16 54% 40%;
-    --radius: 0.65rem;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    /* Light blue primary */
+    --primary: 200 90% 45%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 355.7 100% 97.3%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 200 90% 45%;
+
+    --radius: 0.5rem;
   }
 
   .dark {
-    --background: 18 28% 14%;
-    --foreground: 42 38% 96%;
-    --card: 18 26% 18%;
-    --card-foreground: 42 38% 96%;
-    --popover: 18 26% 18%;
-    --popover-foreground: 42 38% 96%;
-    --primary: 42 72% 80%;
-    --primary-foreground: 18 28% 14%;
-    --secondary: 24 25% 25%;
-    --secondary-foreground: 42 38% 96%;
-    --muted: 24 25% 25%;
-    --muted-foreground: 42 35% 87%;
-    --accent: 16 54% 40%;
-    --accent-foreground: 42 38% 96%;
-    --destructive: 8 58% 40%;
-    --destructive-foreground: 42 38% 96%;
-    --success: 95 26% 35%;
-    --success-foreground: 42 38% 96%;
-    --border: 24 25% 29%;
-    --input: 24 25% 29%;
-    --ring: 16 54% 40%;
+    /* Dark mode background: Dark blue / grey */
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Light blue primary for dark mode */
+    --primary: 200 90% 60%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --success: 142 76% 26%;
+    --success-foreground: 355.7 100% 97.3%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 200 90% 60%;
   }
 }
 
@@ -65,36 +79,21 @@
   * {
     @apply border-border;
   }
-
   body {
-    @apply bg-background text-foreground antialiased selection:bg-accent/25;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-prompt), sans-serif;
-    @apply tracking-tight;
+    @apply bg-background text-foreground antialiased;
   }
 }
 
-@layer utilities {
-  .pha-khao-ma-pattern {
-    background-color: hsl(var(--background));
-    background-image:
-      linear-gradient(135deg, hsla(var(--accent) / 0.06) 0%, transparent 60%),
-      linear-gradient(45deg, hsla(var(--primary) / 0.03) 25%, transparent 25%, transparent 75%, hsla(var(--primary) / 0.03) 75%, hsla(var(--primary) / 0.03));
-    background-size: 100% 100%, 40px 40px;
-    background-position: 0 0, 0 0;
-  }
+/* Geometric Watermark Background */
+.bg-watermark {
+  background-image: 
+    linear-gradient(to right, rgba(125, 211, 252, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(125, 211, 252, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
 
-  .isaan-surface {
-    @apply rounded-[1.5rem] border border-border/70 bg-card/80 shadow-[0_20px_60px_-35px_hsla(var(--primary)/0.35)] backdrop-blur;
-  }
-
-  .isaan-panel {
-    @apply rounded-[1.25rem] border border-border/60 bg-background/70 p-4 shadow-sm;
-  }
-
-  .focus-ring {
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
-  }
+.dark .bg-watermark {
+  background-image: 
+    linear-gradient(to right, rgba(56, 189, 248, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.02) 1px, transparent 1px);
 }

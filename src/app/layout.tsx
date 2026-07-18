@@ -1,50 +1,37 @@
-import type { Metadata } from "next";
-import { Prompt, Sarabun, JetBrains_Mono } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "@/components/providers/theme-provider";
-import { QueryProvider } from "@/components/providers/query-provider";
-import { AuthProvider } from "@/components/providers/auth-provider";
-import { Toaster } from "sonner";
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
+import { ThemeProvider } from '@/components/ThemeProvider'
+import { AuthProvider } from '@/lib/auth-context'
+import { Toaster } from 'sonner'
+import { Header } from '@/components/Header'
+import { AuthGuard } from '@/components/AuthGuard'
 
-const prompt = Prompt({ 
-  weight: ['300', '400', '500', '600', '700'],
-  subsets: ["latin", "thai"],
-  variable: "--font-prompt",
-});
-
-const sarabun = Sarabun({ 
-  weight: ['300', '400', '500', '600', '700'],
-  subsets: ["latin", "thai"],
-  variable: "--font-sarabun",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-});
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: "Isaan Sausage Stock Management",
-  description: "ระบบจัดการสต็อกไส้กรอกอีสาน",
-};
+  title: 'Stock Tracker — ระบบจัดการสต็อกสินค้า',
+  description: 'ระบบจัดการสต็อกสินค้าสำหรับใช้ภายใน',
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="th" suppressHydrationWarning>
-      <body className={`${sarabun.className} ${prompt.variable} ${sarabun.variable} ${jetbrainsMono.variable} font-sans`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <QueryProvider>
-            <AuthProvider>
-              {children}
-              <Toaster richColors position="top-right" />
-            </AuthProvider>
-          </QueryProvider>
+      <body className={`${inter.className} min-h-screen bg-watermark`}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <AuthProvider>
+            <div className="flex min-h-screen flex-col">
+              <Header />
+              <main className="container mx-auto flex-1 px-4 py-8">
+                <AuthGuard>{children}</AuthGuard>
+              </main>
+            </div>
+            <Toaster richColors position="top-right" />
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

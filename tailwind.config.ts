@@ -9,11 +9,6 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ["var(--font-sarabun)", "sans-serif"],
-        display: ["var(--font-prompt)", "sans-serif"],
-        mono: ["var(--font-mono)", "monospace"],
-      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
